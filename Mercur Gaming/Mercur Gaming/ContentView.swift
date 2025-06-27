@@ -2,7 +2,6 @@
 //  ContentView.swift
 //  Mercur Gaming
 //
-//  Created by Dias Atudinov on 27.06.2025.
 //
 
 import SwiftUI
