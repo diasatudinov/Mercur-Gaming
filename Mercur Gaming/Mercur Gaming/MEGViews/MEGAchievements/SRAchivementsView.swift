@@ -1,7 +1,15 @@
+//
+//  SRAchivementsView.swift
+//  Mercur Gaming
+//
+//  Created by Dias Atudinov on 30.06.2025.
+//
+
+
 import SwiftUI
 
 struct SRAchivementsView: View {
-    @StateObject var user = UserSR.shared
+    @StateObject var user = UserPS.shared
     @Environment(\.presentationMode) var presentationMode
 
     @ObservedObject var viewModel: SRAchievementsViewModel
@@ -11,51 +19,38 @@ struct SRAchivementsView: View {
             VStack {
                 HStack {
                     HStack(alignment: .top) {
-                        
                         Button {
                             presentationMode.wrappedValue.dismiss()
                             
                         } label: {
-                            Image(.backIconSR)
+                            Image(.backIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: SRDeviceInfo.shared.deviceType == .pad ? 100:50)
+                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
                         }
                         
-                        
-                        
                         Spacer()
                         
-                        Image(.achieveTextSR)
-                            .resizable()
-                            .scaledToFit()
-                        
-                        Spacer()
-                        Image(.backIconSR)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: SRDeviceInfo.shared.deviceType == .pad ? 100:50)
-                            .opacity(0)
+                        CoinBgPS()
                     }.padding([.top, .horizontal])
                 }
+                Image(.achievementsTextMEG)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:20)
                 
-               
-                Spacer()
-                
-                let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 2)
-                LazyVGrid(columns: columns, spacing: 0) {
-                    ForEach(viewModel.achievements, id: \.self) { achieve in
-                        achievementItem(item: achieve)
+                ScrollView {
+                    VStack {
+                        ForEach(viewModel.achievements, id: \.self) { achieve in
+                            achievementItem(item: achieve)
+                        }
                     }
                 }
                 
-                
-                Spacer()
-               
             }
         }.background(
             ZStack {
-                Image(.appBgSR)
+                Image(.appBgMEG)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .scaledToFill()
@@ -66,7 +61,7 @@ struct SRAchivementsView: View {
     @ViewBuilder func achievementItem(item: SRAchievement) -> some View {
         ZStack {
             VStack(spacing: 0) {
-                Image(item.isAchieved ? item.image:"\(item.image)Off")
+                Image(item.image)
                     .resizable()
                     .scaledToFit()
             
@@ -81,13 +76,17 @@ struct SRAchivementsView: View {
                     viewModel.achieveToggle(item)
                     
                 } label: {
-                    Image(.priceHundredSR)
+                    Image(item.isAchieved ? .takeYellowBtnMEG: .takeGrayBtnMEG)
                         .resizable()
                         .scaledToFit()
-                        .frame(height: SRDeviceInfo.shared.deviceType == .pad ? 100:50)
+                        .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
                 }
-            }
-        }.frame(height: SRDeviceInfo.shared.deviceType == .pad ? 350:200)
+            }.padding(.horizontal, 32).padding(.bottom, 8)
+        }.frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 280:150)
     }
     
+}
+
+#Preview {
+    SRAchivementsView(viewModel: SRAchievementsViewModel())
 }

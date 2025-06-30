@@ -1,13 +1,19 @@
+//
+//  SRAchievementsViewModel.swift
+//  Mercur Gaming
+//
+//
+
+
 import SwiftUI
 
 class SRAchievementsViewModel: ObservableObject {
     
     @Published var achievements: [SRAchievement] = [
-        SRAchievement(image: "achi1SR", isAchieved: false),
-        SRAchievement(image: "achi2SR", isAchieved: false),
-        SRAchievement(image: "achi3SR", isAchieved: false),
-        SRAchievement(image: "achi4SR", isAchieved: false),
-        SRAchievement(image: "achi5SR", isAchieved: false)
+        SRAchievement(image: "achievement1MEG", isAchieved: false),
+        SRAchievement(image: "achievement2MEG", isAchieved: false),
+        SRAchievement(image: "achievement3MEG", isAchieved: false),
+        SRAchievement(image: "achievement4MEG", isAchieved: false),
 
     ] {
         didSet {
@@ -20,7 +26,7 @@ class SRAchievementsViewModel: ObservableObject {
         
     }
     
-    private let userDefaultsAchievementsKey = "achievementsKeySR"
+    private let userDefaultsAchievementsKey = "achievementsKeyMEG"
     
     func achieveToggle(_ achive: SRAchievement) {
         guard let index = achievements.firstIndex(where: { $0.id == achive.id })

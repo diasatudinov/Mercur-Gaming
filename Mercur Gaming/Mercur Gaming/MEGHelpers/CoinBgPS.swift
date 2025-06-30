@@ -16,14 +16,12 @@ struct CoinBgPS: View {
                 .scaledToFit()
             
             Text("\(user.money)")
-                .font(.system(size: ITTPDeviceInfo.shared.deviceType == .pad ? 58:32, weight: .black))
+                .font(.system(size: ITTPDeviceInfo.shared.deviceType == .pad ? 32:16, weight: .black))
                 .foregroundStyle(.black)
                 .textCase(.uppercase)
-                .offset(x: ITTPDeviceInfo.shared.deviceType == .pad ? 10:5, y: ITTPDeviceInfo.shared.deviceType == .pad ? 0:0)
             
             
-            
-        }.frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 120:80)
+        }.frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
         
     }
 }
