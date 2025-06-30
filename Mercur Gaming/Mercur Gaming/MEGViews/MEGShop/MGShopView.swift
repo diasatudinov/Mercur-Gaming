@@ -1,8 +1,15 @@
+//
+//  MGShopView.swift
+//  Mercur Gaming
+//
+//
+
+
 import SwiftUI
 
 struct MGShopView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var user = MGUser.shared
+    @StateObject var user = UserPS.shared
     @ObservedObject var viewModel: MGShopViewModel
     
     @State private var currentIndex = 0
@@ -12,83 +19,77 @@ struct MGShopView: View {
             VStack {
                 HStack {
                     HStack(alignment: .top) {
-                        VStack {
-                            Button {
-                                presentationMode.wrappedValue.dismiss()
-                                
-                            } label: {
-                                Image(.backIconMG)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: MGDeviceManager.shared.deviceType == .pad ? 100:50)
-                            }
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
                             
-                            MGCoinBg().opacity(0)
+                        } label: {
+                            Image(.backIconMEG)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
                         }
+                        
                         Spacer()
-                        Image(.shopTextMG)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: MGDeviceManager.shared.deviceType == .pad ? 210:105)
-                        Spacer()
-                        MGCoinBg()
+                        
+                        CoinBgPS()
                     }.padding([.top])
                 }
                 
-                Spacer()
+                Image(.shopTextMEG)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:20)
                 
-                HStack {
-                    Button(action: {
-                        withAnimation {
-                            currentIndex = (currentIndex - 1 + viewModel.shopBgItems.count) % viewModel.shopBgItems.count
-                        }
-                    }) {
-                        Image(.arrowLeftMG)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: MGDeviceManager.shared.deviceType == .pad ? 100:60)
-                    }
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 0) {
-                        ForEach(0..<3, id: \.self) { i in
-                            let index = (currentIndex - 1 + i + viewModel.shopBgItems.count) % viewModel.shopBgItems.count
+                ScrollView {
+                    VStack {
+                        ForEach(viewModel.shopBgItems, id: \.self) { item in
                             ZStack {
-                                Image(viewModel.shopBgItems[index].icon)
+                                Image(item.image)
                                     .resizable()
                                     .scaledToFit()
-                                    .opacity(i == 1 ? 1.0 : 1)
-                                    .scaleEffect(i == 1 ? 1.0 : 0.8)
-                                    .animation(.easeInOut, value: currentIndex)
-                                if i == 1 {
-                                    VStack {
-                                        Spacer()
-                                        
-                                        Button {
-                                            if viewModel.boughtItems.contains(where: { $0.name == viewModel.shopBgItems[index].name }) {
-                                                viewModel.currentBgItem = viewModel.shopBgItems[index]
+                                
+                                VStack {
+                                    Spacer()
+                                    Button {
+                                        if item.isBg {
+                                            if viewModel.boughtItems.contains(where: { $0.name == item.name }) {
+                                                viewModel.currentBgItem = item
                                             } else {
-                                                if !viewModel.boughtItems.contains(where: { $0.name == viewModel.shopBgItems[index].name }) {
+                                                if !viewModel.boughtItems.contains(where: { $0.name == item.name }) {
                                                     
-                                                    if user.money >= viewModel.shopBgItems[index].price {
-                                                        user.minusUserMoney(for: viewModel.shopBgItems[index].price)
-                                                        viewModel.boughtItems.append(viewModel.shopBgItems[index])
+                                                    if user.money >= item.price {
+                                                        user.minusUserMoney(for: item.price)
+                                                        viewModel.boughtItems.append(item)
                                                     }
                                                 }
                                             }
-                                        } label: {
-                                            if viewModel.boughtItems.contains(where: { $0.name == viewModel.shopBgItems[index].name }) {
+                                        } else {
+                                            if viewModel.boughtItems.contains(where: { $0.name == item.name }) {
+                                                viewModel.currentSkinItem = item
+                                            } else {
+                                                if !viewModel.boughtItems.contains(where: { $0.name == item.name }) {
+                                                    
+                                                    if user.money >= item.price {
+                                                        user.minusUserMoney(for: item.price)
+                                                        viewModel.boughtItems.append(item)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } label: {
+                                        if !item.isBg {
+                                            if viewModel.boughtItems.contains(where: { $0.name == item.name }) {
                                                 
                                                 
-                                                if let currentItem = viewModel.currentBgItem, currentItem.name == viewModel.shopBgItems[index].name {
-                                                    Image(.usedTextMG)
+                                                if let currentItem = viewModel.currentSkinItem, currentItem.name == item.name {
+                                                    
+                                                    Image(.purchasedBtnMEG)
                                                         .resizable()
                                                         .scaledToFit()
                                                         .frame(height: 50)
-                                                        
+                                                    
                                                 } else {
-                                                    Image(.useTextMG)
+                                                    Image(.takeBtnMEG)
                                                         .resizable()
                                                         .scaledToFit()
                                                         .frame(height: 50)
@@ -96,48 +97,57 @@ struct MGShopView: View {
                                                 
                                                 
                                             } else {
-                                                if user.money >= viewModel.shopBgItems[index].price {
-                                                    Image(.priceHundredMG)
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .frame(height: 55)
-                                                } else {
-                                                    Image(.priceHundredOffMG)
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .frame(height: 55)
-                                                }
-                                                
+                                                Image(.hundredBtnMEG)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: 55)
                                                 
                                                 
                                             }
-                                            
+                                        } else {
+                                            if viewModel.boughtItems.contains(where: { $0.name == item.name }) {
+                                                
+                                                
+                                                if let currentItem = viewModel.currentBgItem, currentItem.name == item.name {
+                                                    
+                                                    Image(.purchasedBtnMEG)
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(height: 50)
+                                                    
+                                                } else {
+                                                    Image(.takeBtnMEG)
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(height: 50)
+                                                }
+                                                
+                                                
+                                            } else {
+                                                Image(.hundredBtnMEG)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: 55)
+                                                
+                                                
+                                            }
                                         }
+                                        
+                                        
                                     }
-                                }
-                            }.frame(width: i == 1 ? (MGDeviceManager.shared.deviceType == .pad ? 400:250) : (MGDeviceManager.shared.deviceType == .pad ? 300:150), height: i == 1 ? (MGDeviceManager.shared.deviceType == .pad ? 400:250) : (MGDeviceManager.shared.deviceType == .pad ? 300:150))
+                                }.padding(.horizontal, 32).padding(.bottom, 8)
+                            }.frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 280:150)
+                            
                         }
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        withAnimation {
-                            currentIndex = (currentIndex + 1) % viewModel.shopBgItems.count
-                        }
-                    }) {
-                        Image(.arrowLeftMG)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: MGDeviceManager.shared.deviceType == .pad ? 100:60)
-                            .scaleEffect(x: -1, y: 1)
                     }
                 }
+                
                 Spacer()
-            }
+                
+            }.padding(.horizontal)
         }.background(
             ZStack {
-                Image(.appBgMG)
+                Image(.appBgMEG)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .scaledToFill()
@@ -150,3 +160,76 @@ struct MGShopView: View {
 #Preview {
     MGShopView(viewModel: MGShopViewModel())
 }
+
+
+//HStack {
+//    Spacer()
+//
+//    HStack(spacing: 0) {
+//        ForEach(0..<3, id: \.self) { i in
+//            let index = (currentIndex - 1 + i + viewModel.shopBgItems.count) % viewModel.shopBgItems.count
+//            ZStack {
+//                Image(viewModel.shopBgItems[index].icon)
+//                    .resizable()
+//                    .scaledToFit()
+//                    .opacity(i == 1 ? 1.0 : 1)
+//                    .scaleEffect(i == 1 ? 1.0 : 0.8)
+//                    .animation(.easeInOut, value: currentIndex)
+//                if i == 1 {
+//                    VStack {
+//                        Spacer()
+//
+//                        Button {
+//                            if viewModel.boughtItems.contains(where: { $0.name == viewModel.shopBgItems[index].name }) {
+//                                viewModel.currentBgItem = viewModel.shopBgItems[index]
+//                            } else {
+//                                if !viewModel.boughtItems.contains(where: { $0.name == viewModel.shopBgItems[index].name }) {
+//
+//                                    if user.money >= viewModel.shopBgItems[index].price {
+//                                        user.minusUserMoney(for: viewModel.shopBgItems[index].price)
+//                                        viewModel.boughtItems.append(viewModel.shopBgItems[index])
+//                                    }
+//                                }
+//                            }
+//                        } label: {
+//                            if viewModel.boughtItems.contains(where: { $0.name == viewModel.shopBgItems[index].name }) {
+//
+//
+//                                if let currentItem = viewModel.currentBgItem, currentItem.name == viewModel.shopBgItems[index].name {
+//                                    Image(.usedTextMG)
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                        .frame(height: 50)
+//
+//                                } else {
+//                                    Image(.useTextMG)
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                        .frame(height: 50)
+//                                }
+//
+//
+//                            } else {
+//                                if user.money >= viewModel.shopBgItems[index].price {
+//                                    Image(.priceHundredMG)
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                        .frame(height: 55)
+//                                } else {
+//                                    Image(.priceHundredOffMG)
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                        .frame(height: 55)
+//                                }
+//
+//
+//
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            }.frame(width: i == 1 ? (ITTPDeviceInfo.shared.deviceType == .pad ? 400:250) : (ITTPDeviceInfo.shared.deviceType == .pad ? 300:150), height: i == 1 ? (ITTPDeviceInfo.shared.deviceType == .pad ? 400:250) : (ITTPDeviceInfo.shared.deviceType == .pad ? 300:150))
+//        }
+//    }
+//}

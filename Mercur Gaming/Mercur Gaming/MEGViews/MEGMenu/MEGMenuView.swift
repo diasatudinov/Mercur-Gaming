@@ -13,7 +13,10 @@ struct MEGMenuView: View {
     @State private var showDailyTask = false
     @State private var showDailyReward = false
     
-    //    @StateObject var achievementVM = ITTPAchievementsViewModel()
+    @StateObject var dailyRewardVM = MEGDailyRewardsViewModel()
+    @StateObject var dailyTasksVM = MEGDailyTaskViewModel()
+    @StateObject var shopVM = MGShopViewModel()
+        @StateObject var achievementVM = SRAchievementsViewModel()
     //    @StateObject var settingsVM = ITTPSettingsViewModel()
     //    @StateObject var gameVM = ITTPNewGameViewModel()
     
@@ -130,19 +133,19 @@ struct MEGMenuView: View {
                 }
             )
             .fullScreenCover(isPresented: $showGame) {
-                //                ITTPNewGameView(viewModel: gameVM)
+//                ITTPNewGameView(viewModel: gameVM)
             }
             .fullScreenCover(isPresented: $showAchievement) {
-                //                ITTPAchievementsView(viewModel: achievementVM)
+                SRAchivementsView(viewModel: achievementVM)
             }
             .fullScreenCover(isPresented: $showShop) {
-                //                ITTPSettingsView(settingsVM: settingsVM)
+                MGShopView(viewModel: shopVM)
             }
             .fullScreenCover(isPresented: $showDailyTask) {
-                
+                MEGDailyTaskView(viewModel: dailyTasksVM)
             }
             .fullScreenCover(isPresented: $showDailyReward) {
-                
+                MEGDailyRewardsView(viewModel: dailyRewardVM)
             }
     }
 }
