@@ -2,17 +2,77 @@
 //  MEGDailyTaskView.swift
 //  Mercur Gaming
 //
-//  Created by Dias Atudinov on 30.06.2025.
 //
 
 import SwiftUI
 
 struct MEGDailyTaskView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var viewModel: MEGDailyTaskViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack {
+                HStack {
+                    HStack(alignment: .top) {
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                            
+                        } label: {
+                            Image(.backIconMEG)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                        }
+                        Spacer()
+                       
+                        CoinBgPS()
+                        
+                       
+                        
+                    }.padding([.horizontal, .top])
+                }
+                
+                Image(.dailyTaskTextMEG)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:20)
+                
+                ScrollView {
+                    VStack {
+                        ForEach(viewModel.dailyTasks, id: \.self) { task in
+                            ZStack {
+                                Image(task)
+                                    .resizable()
+                                    .scaledToFit()
+                                
+                                VStack {
+                                    Spacer()
+                                    
+                                    Button {
+                                        UserPS.shared.updateUserMoney(for: 20)
+                                    } label: {
+                                        Image(.takeYellowBtnMEG)
+                                            .resizable()
+                                            .scaledToFit()
+                                        
+                                    }.padding()
+                                }
+                            }.frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 280:150)
+                        }
+                    }.padding(.horizontal)
+                }
+            }
+        }.background(
+            ZStack {
+                Image(.appBgMEG)
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                    .scaledToFill()
+            }
+        )
     }
 }
 
 #Preview {
-    MEGDailyTaskView()
+    MEGDailyTaskView(viewModel: MEGDailyTaskViewModel())
 }
