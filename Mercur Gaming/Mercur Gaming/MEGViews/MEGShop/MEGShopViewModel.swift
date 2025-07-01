@@ -9,33 +9,33 @@ import SwiftUI
 
 
 class MEGShopViewModel: ObservableObject {
-    @Published var shopBgItems: [MGItem] = [
+    @Published var shopBgItems: [MEGItem] = [
         
-        MGItem(isBg: false, name: "skin1", image: "gameRealSkin1MG", icon: "gameSkin1MG", price: 100),
-        MGItem(isBg: false, name: "skin2", image: "gameRealSkin2MG", icon: "gameSkin2MG", price: 100),
-        MGItem(isBg: false, name: "skin3", image: "gameRealSkin3MG", icon: "gameSkin3MG", price: 100),
-        MGItem(isBg: true, name: "bg1", image: "gameRealBg1MEG", icon: "gameBg1MG", price: 100),
-        MGItem(isBg: true, name: "bg2", image: "gameRealBg2MEG", icon: "gameBg2MG", price: 100),
-        MGItem(isBg: true, name: "bg3", image: "gameRealBg3MEG", icon: "gameBg3MG", price: 100),
+        MEGItem(isBg: false, name: "skin1", image: "gameRealSkin1MG", icon: "gameSkin1MG", price: 100),
+        MEGItem(isBg: false, name: "skin2", image: "gameRealSkin2MG", icon: "gameSkin2MG", price: 100),
+        MEGItem(isBg: false, name: "skin3", image: "gameRealSkin3MG", icon: "gameSkin3MG", price: 100),
+        MEGItem(isBg: true, name: "bg1", image: "gameRealBg1MEG", icon: "gameBg1MG", price: 100),
+        MEGItem(isBg: true, name: "bg2", image: "gameRealBg2MEG", icon: "gameBg2MG", price: 100),
+        MEGItem(isBg: true, name: "bg3", image: "gameRealBg3MEG", icon: "gameBg3MG", price: 100),
         
     ]
     
-    @Published var boughtItems: [MGItem] = [
-        MGItem(isBg: false, name: "skin1", image: "gameRealSkin1MG", icon: "gameSkin1MG", price: 100),
-        MGItem(isBg: true, name: "bg1", image: "gameRealBg1MEG", icon: "gameBg1MG", price: 100),
+    @Published var boughtItems: [MEGItem] = [
+        MEGItem(isBg: false, name: "skin1", image: "gameRealSkin1MG", icon: "gameSkin1MG", price: 100),
+        MEGItem(isBg: true, name: "bg1", image: "gameRealBg1MEG", icon: "gameBg1MG", price: 100),
     ] {
         didSet {
             saveBoughtItem()
         }
     }
     
-    @Published var currentSkinItem: MGItem? {
+    @Published var currentSkinItem: MEGItem? {
         didSet {
             saveCurrentSkin()
         }
     }
     
-    @Published var currentBgItem: MGItem? {
+    @Published var currentBgItem: MEGItem? {
         didSet {
             saveCurrentBg()
         }
@@ -62,7 +62,7 @@ class MEGShopViewModel: ObservableObject {
     
     func loadCurrentBg() {
         if let savedData = UserDefaults.standard.data(forKey: userDefaultsBgKey),
-           let loadedItem = try? JSONDecoder().decode(MGItem.self, from: savedData) {
+           let loadedItem = try? JSONDecoder().decode(MEGItem.self, from: savedData) {
             currentBgItem = loadedItem
         } else {
             currentBgItem = shopBgItems[3]
@@ -80,7 +80,7 @@ class MEGShopViewModel: ObservableObject {
     
     func loadCurrentSkin() {
         if let savedData = UserDefaults.standard.data(forKey: userDefaultsSkinKey),
-           let loadedItem = try? JSONDecoder().decode(MGItem.self, from: savedData) {
+           let loadedItem = try? JSONDecoder().decode(MEGItem.self, from: savedData) {
             currentSkinItem = loadedItem
         } else {
             currentSkinItem = shopBgItems[0]
@@ -97,7 +97,7 @@ class MEGShopViewModel: ObservableObject {
     
     func loadBoughtItem() {
         if let savedData = UserDefaults.standard.data(forKey: userDefaultsBoughtKey),
-           let loadedItem = try? JSONDecoder().decode([MGItem].self, from: savedData) {
+           let loadedItem = try? JSONDecoder().decode([MEGItem].self, from: savedData) {
             boughtItems = loadedItem
         } else {
             print("No saved data found")
@@ -106,7 +106,7 @@ class MEGShopViewModel: ObservableObject {
     
 }
 
-struct MGItem: Codable, Hashable {
+struct MEGItem: Codable, Hashable {
     var id = UUID()
     var isBg: Bool
     var name: String

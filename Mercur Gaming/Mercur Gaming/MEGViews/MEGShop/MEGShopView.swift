@@ -10,7 +10,7 @@ import SwiftUI
 struct MEGShopView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var user = MEGUser.shared
-    @ObservedObject var viewModel: MGShopViewModel
+    @ObservedObject var viewModel: MEGShopViewModel
     
     @State private var currentIndex = 0
     var body: some View {
@@ -158,5 +158,5 @@ struct MEGShopView: View {
 }
 
 #Preview {
-    MEGShopView(viewModel: MGShopViewModel())
+    MEGShopView(viewModel: MEGShopViewModel())
 }
