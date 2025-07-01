@@ -2,7 +2,6 @@
 //  MEGResolver.swift
 //  Mercur Gaming
 //
-//  Created by Dias Atudinov on 02.07.2025.
 //
 
 

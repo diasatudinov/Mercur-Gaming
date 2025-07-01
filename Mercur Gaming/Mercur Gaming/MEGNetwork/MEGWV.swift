@@ -2,7 +2,6 @@
 //  MEGWV.swift
 //  Mercur Gaming
 //
-//  Created by Dias Atudinov on 02.07.2025.
 //
 
 
@@ -60,7 +59,7 @@ struct MEGWV: UIViewRepresentable {
     }
 }
 
-struct MGWVWrap: View {
+struct MEGWVWrap: View {
     @State private var nAllow = true
     var urlString = ""
     @AppStorage("firstOpen") var firstOpen = true

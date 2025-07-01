@@ -9,11 +9,11 @@ import SwiftUI
 
 class MEGAchievementsViewModel: ObservableObject {
     
-    @Published var achievements: [SRAchievement] = [
-        SRAchievement(image: "achievement1MEG", isAchieved: false),
-        SRAchievement(image: "achievement2MEG", isAchieved: false),
-        SRAchievement(image: "achievement3MEG", isAchieved: false),
-        SRAchievement(image: "achievement4MEG", isAchieved: false),
+    @Published var achievements: [MEGAchievement] = [
+        MEGAchievement(image: "achievement1MEG", isAchieved: false),
+        MEGAchievement(image: "achievement2MEG", isAchieved: false),
+        MEGAchievement(image: "achievement3MEG", isAchieved: false),
+        MEGAchievement(image: "achievement4MEG", isAchieved: false),
 
     ] {
         didSet {
@@ -28,7 +28,7 @@ class MEGAchievementsViewModel: ObservableObject {
     
     private let userDefaultsAchievementsKey = "achievementsKeyMEG"
     
-    func achieveToggle(_ achive: SRAchievement) {
+    func achieveToggle(_ achive: MEGAchievement) {
         guard let index = achievements.firstIndex(where: { $0.id == achive.id })
         else {
             return
@@ -47,7 +47,7 @@ class MEGAchievementsViewModel: ObservableObject {
     
     func loadAchievementsItem() {
         if let savedData = UserDefaults.standard.data(forKey: userDefaultsAchievementsKey),
-           let loadedItem = try? JSONDecoder().decode([SRAchievement].self, from: savedData) {
+           let loadedItem = try? JSONDecoder().decode([MEGAchievement].self, from: savedData) {
             achievements = loadedItem
         } else {
             print("No saved data found")
@@ -55,7 +55,7 @@ class MEGAchievementsViewModel: ObservableObject {
     }
 }
 
-struct SRAchievement: Codable, Hashable, Identifiable {
+struct MEGAchievement: Codable, Hashable, Identifiable {
     var id = UUID()
     var image: String
     var isAchieved: Bool
