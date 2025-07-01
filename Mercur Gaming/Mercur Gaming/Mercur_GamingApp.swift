@@ -10,7 +10,7 @@ import SwiftUI
 struct Mercur_GamingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//
         }
     }
 }
