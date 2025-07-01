@@ -2,7 +2,6 @@
 //  MEGDailyRewardsViewModel.swift
 //  Mercur Gaming
 //
-//  Created by Dias Atudinov on 30.06.2025.
 //
 
 import Foundation
@@ -51,7 +50,7 @@ class MEGDailyRewardsViewModel: ObservableObject {
     }
     
     func takeBtnPress() {
-        UserPS.shared.updateUserMoney(for: 10)
+        MEGUser.shared.updateUserMoney(for: 10)
         if let index = days.firstIndex(where: { $0.image == currentDay.image }) {
             switch index {
             case 0:

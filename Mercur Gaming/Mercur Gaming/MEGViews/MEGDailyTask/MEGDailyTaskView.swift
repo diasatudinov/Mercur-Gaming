@@ -21,11 +21,11 @@ struct MEGDailyTaskView: View {
                             Image(.backIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                         }
                         Spacer()
                        
-                        CoinBgPS()
+                        MEGCoinBg()
                         
                        
                         
@@ -35,7 +35,7 @@ struct MEGDailyTaskView: View {
                 Image(.dailyTaskTextMEG)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:20)
+                    .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 40:20)
                 
                 ScrollView {
                     VStack {
@@ -49,7 +49,7 @@ struct MEGDailyTaskView: View {
                                     Spacer()
                                     
                                     Button {
-                                        UserPS.shared.updateUserMoney(for: 20)
+                                        MEGUser.shared.updateUserMoney(for: 20)
                                     } label: {
                                         Image(.takeYellowBtnMEG)
                                             .resizable()
@@ -57,7 +57,7 @@ struct MEGDailyTaskView: View {
                                         
                                     }.padding()
                                 }
-                            }.frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 280:150)
+                            }.frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 280:150)
                         }
                     }.padding(.horizontal)
                 }

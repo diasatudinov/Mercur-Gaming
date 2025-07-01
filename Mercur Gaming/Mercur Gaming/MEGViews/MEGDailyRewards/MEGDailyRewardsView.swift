@@ -2,7 +2,6 @@
 //  MEGDailyRewardsView.swift
 //  Mercur Gaming
 //
-//  Created by Dias Atudinov on 30.06.2025.
 //
 
 import SwiftUI
@@ -22,11 +21,11 @@ struct MEGDailyRewardsView: View {
                             Image(.backIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                         }
                         Spacer()
                        
-                        CoinBgPS()
+                        MEGCoinBg()
                         
                        
                         
@@ -36,7 +35,7 @@ struct MEGDailyRewardsView: View {
                 Image(.dailyRewardsTextMEG)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:20)
+                    .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 40:20)
                     .padding(.top, 60)
                 
                 let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 3)
@@ -46,7 +45,7 @@ struct MEGDailyRewardsView: View {
                             Image("\(day.image)BoxMEG")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:76)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 40:76)
                         }
                     }
                 }.padding(.top, 36)
@@ -60,7 +59,7 @@ struct MEGDailyRewardsView: View {
                     Image(.tenCoinsMEG)
                         .resizable()
                         .scaledToFit()
-                        .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 150:100)
+                        .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 150:100)
                 }.padding(.top, 36)
                 
                 Button {
@@ -70,7 +69,7 @@ struct MEGDailyRewardsView: View {
                     Image(.takeBtnMEG)
                         .resizable()
                         .scaledToFit()
-                        .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 130:70)
+                        .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 130:70)
                 }
                 Spacer()
             }
