@@ -1,3 +1,10 @@
+//
+//  AppDelegate.swift
+//  Mercur Gaming
+//
+//
+
+
 import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
