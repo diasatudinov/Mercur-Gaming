@@ -14,15 +14,15 @@ class MGShopViewModel: ObservableObject {
         MGItem(isBg: false, name: "skin1", image: "gameRealSkin1MG", icon: "gameSkin1MG", price: 100),
         MGItem(isBg: false, name: "skin2", image: "gameRealSkin2MG", icon: "gameSkin2MG", price: 100),
         MGItem(isBg: false, name: "skin3", image: "gameRealSkin3MG", icon: "gameSkin3MG", price: 100),
-        MGItem(isBg: true, name: "bg1", image: "gameRealBg1MG", icon: "gameBg1MG", price: 100),
-        MGItem(isBg: true, name: "bg2", image: "gameRealBg2MG", icon: "gameBg2MG", price: 100),
-        MGItem(isBg: true, name: "bg3", image: "gameRealBg3MG", icon: "gameBg3MG", price: 100),
+        MGItem(isBg: true, name: "bg1", image: "gameRealBg1MEG", icon: "gameBg1MG", price: 100),
+        MGItem(isBg: true, name: "bg2", image: "gameRealBg2MEG", icon: "gameBg2MG", price: 100),
+        MGItem(isBg: true, name: "bg3", image: "gameRealBg3MEG", icon: "gameBg3MG", price: 100),
         
     ]
     
     @Published var boughtItems: [MGItem] = [
         MGItem(isBg: false, name: "skin1", image: "gameRealSkin1MG", icon: "gameSkin1MG", price: 100),
-        MGItem(isBg: true, name: "bg1", image: "gameRealBg1MG", icon: "gameBg1MG", price: 100),
+        MGItem(isBg: true, name: "bg1", image: "gameRealBg1MEG", icon: "gameBg1MG", price: 100),
     ] {
         didSet {
             saveBoughtItem()
@@ -47,7 +47,7 @@ class MGShopViewModel: ObservableObject {
         loadBoughtItem()
     }
     
-    private let userDefaultsBgKey = "backgroundKeyMEG"
+    private let userDefaultsBgKey = "backgroundKeyMEG1"
     private let userDefaultsSkinKey = "skinKeyMEG"
     private let userDefaultsBoughtKey = "boughtShopItemsMEG"
 
