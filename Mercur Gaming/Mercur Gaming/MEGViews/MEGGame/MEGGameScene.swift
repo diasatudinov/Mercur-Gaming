@@ -2,14 +2,13 @@
 //  MEGGameScene.swift
 //  Mercur Gaming
 //
-//  Created by Dias Atudinov on 30.06.2025.
 //
 
 
 import SpriteKit
 
 class MEGGameScene: SKScene {
-    let shopVM = MGShopViewModel()
+    let shopVM = MEGShopViewModel()
     var level: Int?
     // MARK: — nodes & textures
     private var bear: SKSpriteNode!

@@ -2,7 +2,6 @@
 //  MGSpriteViewContainer.swift
 //  Mercur Gaming
 //
-//  Created by Dias Atudinov on 01.07.2025.
 //
 
 
@@ -11,8 +10,8 @@ import SpriteKit
 
 
 struct MGSpriteViewContainer: UIViewRepresentable {
-    @StateObject var user = UserPS.shared
-    var scene: GameScene
+    @StateObject var user = MEGUser.shared
+    var scene: MEGGameScene
     var level: Int
     
     func makeUIView(context: Context) -> SKView {

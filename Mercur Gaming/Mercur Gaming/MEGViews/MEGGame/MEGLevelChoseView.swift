@@ -8,7 +8,7 @@ import SwiftUI
 
 struct MEGLevelChoseView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var shopVM: MGShopViewModel
+    @ObservedObject var shopVM: MEGShopViewModel
 
     @State var openGame1 = false
     @State var openGame2 = false
@@ -26,7 +26,7 @@ struct MEGLevelChoseView: View {
                             Image(.backIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                         }
                         
                         Spacer()
@@ -37,7 +37,7 @@ struct MEGLevelChoseView: View {
                 Image(.selectLevelTextMEG)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:20)
+                    .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 40:20)
                     .padding(.vertical, 20)
                 
                     
@@ -50,7 +50,7 @@ struct MEGLevelChoseView: View {
                             Image(.level1ImageMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 110:60)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 110:60)
                         }
                         
                         Button {
@@ -59,7 +59,7 @@ struct MEGLevelChoseView: View {
                             Image(.level2ImageMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 110:60)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 110:60)
                         }
                         
                         Button {
@@ -68,14 +68,14 @@ struct MEGLevelChoseView: View {
                             Image(.level3ImageMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 110:60)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 110:60)
                         }
                         
                         ForEach(Range(0...3)) { _ in
                             Image(.levelClosedImageMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 110:60)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 110:60)
                         }
                     }
                 }
@@ -105,5 +105,5 @@ struct MEGLevelChoseView: View {
 }
 
 #Preview {
-    MEGLevelChoseView(shopVM: MGShopViewModel())
+    MEGLevelChoseView(shopVM: MEGShopViewModel())
 }

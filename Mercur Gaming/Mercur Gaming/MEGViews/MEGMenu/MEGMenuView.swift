@@ -15,8 +15,8 @@ struct MEGMenuView: View {
     
     @StateObject var dailyRewardVM = MEGDailyRewardsViewModel()
     @StateObject var dailyTasksVM = MEGDailyTaskViewModel()
-    @StateObject var shopVM = MGShopViewModel()
-        @StateObject var achievementVM = SRAchievementsViewModel()
+    @StateObject var shopVM = MEGShopViewModel()
+        @StateObject var achievementVM = MEGAchievementsViewModel()
     //    @StateObject var settingsVM = ITTPSettingsViewModel()
     //    @StateObject var gameVM = ITTPNewGameViewModel()
     
@@ -34,7 +34,7 @@ struct MEGMenuView: View {
                             Image(.dailyRewardMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                             
                         }
                     }
@@ -49,7 +49,7 @@ struct MEGMenuView: View {
                             Image(.dailyTaskIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                             
                         }
                     }
@@ -61,22 +61,22 @@ struct MEGMenuView: View {
                         Image(.welcomeTextMEG)
                             .resizable()
                             .scaledToFit()
-                            .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 30:15)
+                            .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 30:15)
                         
                         Image(.cozyBearTextMEG)
                             .resizable()
                             .scaledToFit()
-                            .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 50:25)
+                            .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 50:25)
                     }
                     VStack(spacing: 15) {
                         Image(.dailyTaskImageMEG)
                             .resizable()
                             .scaledToFit()
-                            .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                            .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                         Image(.dailyTaskTextMEG)
                             .resizable()
                             .scaledToFit()
-                            .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 20:10)
+                            .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 20:10)
                     }
                 }.padding(.top, 30).padding(.bottom, 28)
                 
@@ -90,7 +90,7 @@ struct MEGMenuView: View {
                             Image(.playIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 130:80)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 130:80)
                             
                         }
                     }
@@ -102,7 +102,7 @@ struct MEGMenuView: View {
                             Image(.achievementsIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 130:80)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 130:80)
                             
                         }
                     }
@@ -115,7 +115,7 @@ struct MEGMenuView: View {
                         Image(.shopIconMEG)
                             .resizable()
                             .scaledToFit()
-                            .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 130:80)
+                            .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 130:80)
                     }
                     
                 }
@@ -133,13 +133,13 @@ struct MEGMenuView: View {
                 }
             )
             .fullScreenCover(isPresented: $showGame) {
-//                ITTPNewGameView(viewModel: gameVM)
+                MEGLevelChoseView(shopVM: shopVM)
             }
             .fullScreenCover(isPresented: $showAchievement) {
-                SRAchivementsView(viewModel: achievementVM)
+                MEGAchivementsView(viewModel: achievementVM)
             }
             .fullScreenCover(isPresented: $showShop) {
-                MGShopView(viewModel: shopVM)
+                MEGShopView(viewModel: shopVM)
             }
             .fullScreenCover(isPresented: $showDailyTask) {
                 MEGDailyTaskView(viewModel: dailyTasksVM)
