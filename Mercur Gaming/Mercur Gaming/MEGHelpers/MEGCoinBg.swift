@@ -1,5 +1,5 @@
 //
-//  CoinBgPS.swift
+//  MEGCoinBg.swift
 //  Mercur Gaming
 //
 //
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CoinBgPS: View {
+struct MEGCoinBg: View {
     @StateObject var user = UserPS.shared
     var body: some View {
         ZStack {
@@ -27,5 +27,5 @@ struct CoinBgPS: View {
 }
 
 #Preview {
-    CoinBgPS()
+    MEGCoinBg()
 }

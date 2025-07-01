@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  MEGGameScene.swift
 //  Mercur Gaming
 //
 //  Created by Dias Atudinov on 30.06.2025.
@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class MEGGameScene: SKScene {
     let shopVM = MGShopViewModel()
     var level: Int?
     // MARK: — nodes & textures
@@ -30,7 +30,7 @@ class GameScene: SKScene {
     private var touchPoint: CGPoint?
     
     // MARK: — grid constants
-    private let gridSize: CGFloat = 402
+    private let gridSize: CGFloat = MEGDeviceInfo.shared.deviceType == .pad ? 600:402
     private let cols = 8
     private let rows = 8
     private var gridOrigin: CGPoint = .zero

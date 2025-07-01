@@ -1,5 +1,5 @@
 //
-//  MGShopViewModel.swift
+//  MEGShopViewModel.swift
 //  Mercur Gaming
 //
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-class MGShopViewModel: ObservableObject {
+class MEGShopViewModel: ObservableObject {
     @Published var shopBgItems: [MGItem] = [
         
         MGItem(isBg: false, name: "skin1", image: "gameRealSkin1MG", icon: "gameSkin1MG", price: 100),

@@ -1,5 +1,5 @@
 //
-//  UserPS.swift
+//  MEGUser.swift
 //  Mercur Gaming
 //
 //
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-class UserPS: ObservableObject {
+class MEGUser: ObservableObject {
     
-    static let shared = UserPS()
+    static let shared = MEGUser()
     
     @AppStorage("money") var storedMoney: Int = 100
     @Published var money: Int = 100

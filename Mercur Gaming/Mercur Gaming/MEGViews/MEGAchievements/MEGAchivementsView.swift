@@ -1,5 +1,5 @@
 //
-//  SRAchivementsView.swift
+//  MEGAchivementsView.swift
 //  Mercur Gaming
 //
 //  Created by Dias Atudinov on 30.06.2025.
@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct SRAchivementsView: View {
-    @StateObject var user = UserPS.shared
+struct MEGAchivementsView: View {
+    @StateObject var user = MEGUser.shared
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject var viewModel: SRAchievementsViewModel
+    @ObservedObject var viewModel: MEGAchievementsViewModel
     var body: some View {
         ZStack {
             
@@ -26,18 +26,18 @@ struct SRAchivementsView: View {
                             Image(.backIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                         }
                         
                         Spacer()
                         
-                        CoinBgPS()
+                        MEGCoinBg()
                     }.padding([.top, .horizontal])
                 }
                 Image(.achievementsTextMEG)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:20)
+                    .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 40:20)
                 
                 ScrollView {
                     VStack {
@@ -58,7 +58,7 @@ struct SRAchivementsView: View {
         )
     }
     
-    @ViewBuilder func achievementItem(item: SRAchievement) -> some View {
+    @ViewBuilder func achievementItem(item: MEGAchievement) -> some View {
         ZStack {
             VStack(spacing: 0) {
                 Image(item.image)
@@ -79,14 +79,14 @@ struct SRAchivementsView: View {
                     Image(item.isAchieved ? .takeYellowBtnMEG: .takeGrayBtnMEG)
                         .resizable()
                         .scaledToFit()
-                        .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                        .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                 }
             }.padding(.horizontal, 32).padding(.bottom, 8)
-        }.frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 280:150)
+        }.frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 280:150)
     }
     
 }
 
 #Preview {
-    SRAchivementsView(viewModel: SRAchievementsViewModel())
+    MEGAchivementsView(viewModel: MEGAchievementsViewModel())
 }

@@ -1,5 +1,5 @@
 //
-//  MGShopView.swift
+//  MEGShopView.swift
 //  Mercur Gaming
 //
 //
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MGShopView: View {
+struct MEGShopView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var user = UserPS.shared
+    @StateObject var user = MEGUser.shared
     @ObservedObject var viewModel: MGShopViewModel
     
     @State private var currentIndex = 0
@@ -26,25 +26,25 @@ struct MGShopView: View {
                             Image(.backIconMEG)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 100:50)
+                                .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 100:50)
                         }
                         
                         Spacer()
                         
-                        CoinBgPS()
+                        MEGCoinBg()
                     }.padding([.top])
                 }
                 
                 Image(.shopTextMEG)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 40:20)
+                    .frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 40:20)
                 
                 ScrollView {
                     VStack {
                         ForEach(viewModel.shopBgItems, id: \.self) { item in
                             ZStack {
-                                Image(item.image)
+                                Image(item.icon)
                                     .resizable()
                                     .scaledToFit()
                                 
@@ -136,7 +136,7 @@ struct MGShopView: View {
                                         
                                     }
                                 }.padding(.horizontal, 32).padding(.bottom, 8)
-                            }.frame(height: ITTPDeviceInfo.shared.deviceType == .pad ? 280:150)
+                            }.frame(height: MEGDeviceInfo.shared.deviceType == .pad ? 280:150)
                             
                         }
                     }
@@ -158,5 +158,5 @@ struct MGShopView: View {
 }
 
 #Preview {
-    MGShopView(viewModel: MGShopViewModel())
+    MEGShopView(viewModel: MGShopViewModel())
 }

@@ -1,5 +1,5 @@
 //
-//  SRAchievementsViewModel.swift
+//  MEGAchievementsViewModel.swift
 //  Mercur Gaming
 //
 //
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class SRAchievementsViewModel: ObservableObject {
+class MEGAchievementsViewModel: ObservableObject {
     
     @Published var achievements: [SRAchievement] = [
         SRAchievement(image: "achievement1MEG", isAchieved: false),

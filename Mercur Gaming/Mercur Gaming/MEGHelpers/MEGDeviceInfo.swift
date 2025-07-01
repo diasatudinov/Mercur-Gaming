@@ -1,7 +1,7 @@
 import UIKit
 
-class ITTPDeviceInfo {
-    static let shared = ITTPDeviceInfo()
+class MEGDeviceInfo {
+    static let shared = MEGDeviceInfo()
     
     var deviceType: UIUserInterfaceIdiom
     
